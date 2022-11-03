@@ -2,6 +2,7 @@
 * [Golang 内存管理](http://legendtkl.com/2017/04/02/golang-alloc/)
 * [tcmalloc 介绍](http://legendtkl.com/2015/12/11/go-memory/)
 * [深入浅出Golang Runtime](https://mp.weixin.qq.com/s/TPIIjBycYuhXWOKTg1_2vA)
+* [ptmalloc、tcmalloc与jemalloc对比分析](https://www.cyningsun.com/07-07-2018/memory-allocator-contrasts.html)
 
 go的内存管理和tcmalloc（`thread-caching malloc`）很像，不妨先看看tcmalloc的实现。
 ## 1.tcmalloc
@@ -13,10 +14,9 @@ tcmalloc分配的内存主要来自两个地方：全局缓存堆和进程的私
 
 #### go的内存分配
 go语言的内存分配并不是和tcmalloc一模一样。
-
-局部缓存并不是分配给进程或者线程，而是分配给P（这个还需要说一下go的goroutine实现）
-go的GC是stop the world，并不是每个进程单独进行GC。
-span的管理更有效率
+* 局部缓存并不是分配给进程或者线程，而是分配给P（这个还需要说一下go的goroutine实现）
+* go的GC是stop the world，并不是每个进程单独进行GC。
+* span的管理更有效率
 
 ## 2.golang内存
 Golang 的内存管理基于 tcmalloc，可以说起点挺高的。但是 Golang 在实现的时候还做了很多优化，
@@ -86,16 +86,12 @@ mspan
 
 ## Golang内存分配综合
    * 类似于TCMalloc的结构
-   * 使用span机制来减少碎片. 每个span至少为一个页(go中的一个page为8KB). 每一种span用于一个范围的内存分配需求. 比
-      如16-32byte使用分配32byte的span, 112-128使用分配128byte的span.
+   * 使用span机制来减少碎片. 每个span至少为一个页(go中的一个page为8KB). 每一种span用于一个范围的内存分配需求. 比如16-32byte使用分配32byte的span, 112-128使用分配128byte的span.
    * 一共有67个size范围, 8byte-32KB, 每个size有两种类型(scan和noscan, 表示分配的对象是否会包含指针)
    * 多阶Cache来减少分配的冲突. per-P无锁的mcache, 对应不同size(67*2)的全局mcentral, 全局的mheap.
-   * go代码分配内存优先从当前p的mcache对应size的span中获取; 有的话, 再从对应size的mcentral中获取一个span; 还没有的
-      话, 从mheap中sweep一个span; sweep不出来, 则从mheap中空闲块找到对应span大小的内存. mheap中如果还没有, 则从
-      系统申请内存. 从无锁到全局1/(67*2)粒度的锁, 再到全局锁, 再到系统调用.
+   * go代码分配内存优先从当前p的mcache对应size的span中获取; 有的话, 再从对应size的mcentral中获取一个span; 还没有的话, 从mheap中sweep一个span; sweep不出来, 则从mheap中空闲块找到对应span大小的内存. mheap中如果还没有, 则从系统申请内存. 从无锁到全局1/(67*2)粒度的锁, 再到全局锁, 再到系统调用.
    * stack的分配也是多层次和多class的. 减少分配的锁争抢, 减少栈浪费.
-   * mheap中以treap的结构维护空闲连续page. 归还内存到mheap时, 连续地址会进行合并. (1.11之前采用类似伙伴系统维护
-      <1MB的连续page, treap维护>1MB的连续page)
+   * mheap中以treap的结构维护空闲连续page. 归还内存到mheap时, 连续地址会进行合并. (1.11之前采用类似伙伴系统维护<1MB的连续page, treap维护>1MB的连续page)
    * 对象由GC进行释放. sysmon会定时把mheap空余的内存归还给操作系统
 
 ## 分配策略
@@ -110,5 +106,4 @@ mspan
 > 6. ( mcentral.grow)对应mcentral没有空余span, 则向 mheap( mheap_.alloc)中申请一个span, 能sweep出span则返 回. 否则看mheap的free mTreap能否分配最大于该size的连续 页, 能则分配, 多的页放回 .
 > 7. mheap的free mTreap无可用, 则调用sysAlloc(mmap)向系统申请.
 > 8. 6, 7步中获得的内存构建成span, 返回给mcache, 分配对象
-
 

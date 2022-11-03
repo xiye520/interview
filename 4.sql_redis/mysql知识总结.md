@@ -9,8 +9,8 @@
 * [从原理上理解MySQL的优化建议](https://juejin.im/post/5ec9224f518825432b5dcf11)
 * [100道MySQL数据库经典面试题解析（收藏版）](https://juejin.im/post/5ec15ab9f265da7bc60e1910)
 * []()
-* []()
-* []()
+* [MySQL十道面试题](https://mp.weixin.qq.com/s/g0jxr_CEFwFb-517vxY_XQ)
+* [Mysql性能优化：什么是索引下推？](https://zhuanlan.zhihu.com/p/121084592)
 * []()
 
 ## Mysql架构图

@@ -3,6 +3,7 @@
 
 * [面试官让我用channel实现sync包里的同步锁，是不是故意为难我？](https://mp.weixin.qq.com/s/4UlOQDVd8DgvZta6Kg9_MQ)
 * [channel &amp; select 源码分析 FAQ](https://github.com/talk-go/night/issues/450#issuecomment-524663059)
+* [图解Golang的channel底层原理](https://juejin.cn/post/6844903821349502990)
 
 **Q: buffer 队列的顺序是先进后出吗？**
 

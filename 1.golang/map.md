@@ -4,9 +4,9 @@
 * [深入理解 Go map：赋值和扩容迁移](https://eddycjy.com/posts/go/map/2019-03-24-map-assign/)
 * [深度解密Go语言之sync.map](https://mp.weixin.qq.com/s?__biz=MjM5MDUwNTQwMQ==&mid=2257484131&idx=1&sn=a241eb4b5d869aae91c6c54ec7e89c44&chksm=a53919b5924e90a3800afefe8c8ef7cb4cf0fd8e4d793b6282fffe93ee733ba3ce0d3999e714&scene=126&sessionid=1589300701&key=5fa94eed5565a8ca5039ce5305624ecfdda2f8fa9639961ab266c17f1074ba6d29ea9ba37091ef511fbdec05b9627a29d5fd4e7fd7eb7ab9291ac6270ba1aae2fc1d338927b20019f4f6cd9122838c63&ascene=1&uin=NzA3NzMxNjgx&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=A2YgmnOOk%2B3khVEs8pXZCZ4%3D&pass_ticket=bkqB6VCumkFhyQKCK4SHdAAH0HEdiBIJmzogo9YxEbT%2FW6ohTqn%2B4jrs%2B3EgoZYg)
 * [深入理解Go-sync.Map原理剖析](https://juejin.im/post/5d74d562f265da03ab4273e1)
-* []()
-* []()
-* []()
+* [面试官：为什么 Go 的负载因子是 6.5？](https://mp.weixin.qq.com/s/nL7jkskVHTmCy3Ed9e-RZA)
+* [一文啃透 Go map：初始化和访问](https://mp.weixin.qq.com/s/iL9dgMW47q0ySTYkvfl6fg)
+* [Golang 高性能 LocalCache：BigCache 设计与分析](https://pandaychen.github.io/2020/03/03/BIGCACHE-ANALYSIS/)
 * []()
 
 
@@ -48,7 +48,7 @@ type mapextra struct {
     * overflow 为 hmap.buckets （当前）溢出桶的指针地址
     * oldoverflow 为 hmap.oldbuckets （旧）溢出桶的指针地址
     * nextOverflow 为空闲溢出桶的指针地址
-在这里我们要注意几点，如下：
+    在这里我们要注意几点，如下：
 
 如果 keys 和 values 都不包含指针并且允许内联的情况下。会将 bucket 标识为不包含指针，使用 extra 存储溢出桶就可以避免 GC 扫描整个 map，节省不必要的开销
 在前面有提到，Go 用了增量扩容。而 buckets 和 oldbuckets 也是与扩容相关的载体，一般情况下只使用 buckets，oldbuckets 是为空的。但如果正在扩容的话，oldbuckets 便不为空，buckets 的大小也会改变

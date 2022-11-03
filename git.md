@@ -2,6 +2,10 @@
 
 * [Git新手教程-查看仓库的历史记录（四）](https://juejin.im/post/5da0a4b4e51d45784840b6b3)
 * [Git 基础 - 查看提交历史]([https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2](https://git-scm.com/book/zh/v2/Git-基础-查看提交历史))
+* [Github进行fork后如何与原仓库同步](https://github.com/selfteaching/the-craft-of-selfteaching/issues/67)
+* 
+
+
 
 ```
 github上查看一个人评论过哪些issue 

@@ -2,7 +2,7 @@
 
 ​		要了解MPG调度、基于tcmalloc的内存分配方式、gc，channel、context、反射，切片、map底层原理，pprof性能分析调优；
 
-
+* [Go语言问题集](https://www.bookstack.cn/read/qcrao-Go-Questions/README.md)
 
 * 1.向已经关闭的channel写数据**[**http://play.golang.org/p/vl5d5tkfl7**](http://play.golang.org/p/vl5d5tkfl7)
 * 2.http://www.ituring.com.cn/article/37642  延伸阅读**

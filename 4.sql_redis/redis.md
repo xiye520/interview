@@ -43,7 +43,8 @@
 * [第三十六章：Redis的主从复制](https://zhuanlan.zhihu.com/p/44376199)
 * [第三十七章：Redis Sentinel哨兵机制](https://zhuanlan.zhihu.com/p/44474652)
 * [第三十八章：Redis集群的搭建](https://zhuanlan.zhihu.com/p/44747130)
-* []()
+* 
+* [Redis为什么变慢了？一文讲透如何排查Redis性能问题](https://z.itpub.net/article/detail/A9D0E8BC6BA3FAF73DED0933327588AB)
 * []()
 * []()
 

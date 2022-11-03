@@ -40,3 +40,6 @@ golang后端知识点总结，作为一名后端开发人员需要了解掌握�
 * [简单围观一下有趣的 //go: 指令](https://eddycjy.com/posts/go/talk/2019-03-31-go-ins/)
 
 * [Prometheus 查询语言](https://www.jianshu.com/p/3bdc4cfa08da)
+
+* [工程师应该怎么学习--xargin](https://xargin.com/how-to-learn/)
+

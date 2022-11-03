@@ -19,7 +19,15 @@
 * [服务雪崩效应](https://blog.csdn.net/yangguosb/article/details/78480835)
 * [微服务架构-服务降级](https://zhuanlan.zhihu.com/p/58601445)
 * [漫画：什么是服务熔断？(https://juejin.im/post/5ad05373518825619d4d2f00)
+* 写扩散、读扩散： [微信朋友圈--Feed流系统设计](https://segmentfault.com/a/1190000018634687)
+* []()
 * []()
 
+杂谈：
 
+* [研发效能认证（EPC）体系介绍](https://cloud.tencent.com/developer/article/1650008)
+
+架构设计：
+
+* [架构设计篇之云计算服务设计与决策](https://cloud.tencent.com/developer/news/679571)
 
